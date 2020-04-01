@@ -2,7 +2,7 @@ import json
 import uuid
 import random
 import string
-from http_parser.http import HttpParser
+from toil_http_parser.http import HttpParser
 from pymesos import MesosExecutorDriver, encode_data
 
 
