@@ -15,7 +15,7 @@ from six.moves import _thread as thread
 from six.moves.http_client import OK, TEMPORARY_REDIRECT, SERVICE_UNAVAILABLE
 from six.moves.urllib.parse import urlparse
 from threading import Thread, RLock
-from http_parser.http import HttpParser
+from toil_http_parser.http import HttpParser
 from .utils import DAY
 
 
@@ -111,9 +111,9 @@ class Connection(object):
             n_parsed = self._parser.execute(buf, n_recv)
             if n_parsed != n_recv:
                 if hasattr(self._parser, 'errno'):
-                    # using http_parser.pyparser
+                    # using toil_http_parser.pyparser
 
-                    from http_parser.pyparser import INVALID_CHUNK
+                    from toil_http_parser.pyparser import INVALID_CHUNK
                     if self._parser.errno == INVALID_CHUNK:
                         # need more chunk data
                         return True
