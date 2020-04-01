@@ -15,7 +15,7 @@ from six.moves import _thread as thread
 from six.moves.http_client import OK, TEMPORARY_REDIRECT, SERVICE_UNAVAILABLE
 from six.moves.urllib.parse import urlparse
 from threading import Thread, RLock
-from toil_http_parser.http import HttpParser
+from http_parser.http import HttpParser
 from .utils import DAY
 
 
@@ -49,9 +49,7 @@ PIPE_BUF = getattr(select, 'PIPE_BUF', 4096)
 
 SLEEP_TIMEOUT_SCALE = 2
 SLEEP_TIMEOUT_INIT = 2
-# SLEEP_TIMEOUT_MAX used by backoff and cater to mesos restriction
-# https://github.com/apache/mesos/blob/0dc24dba9afdca1948eea5cad05f861162dc8dd6/src/slave/constants.hpp#L45
-SLEEP_TIMEOUT_MAX = 15
+SLEEP_TIMEOUT_MAX = 300
 SELECT_TIMEOUT = 2
 
 
@@ -113,9 +111,9 @@ class Connection(object):
             n_parsed = self._parser.execute(buf, n_recv)
             if n_parsed != n_recv:
                 if hasattr(self._parser, 'errno'):
-                    # using toil_http_parser.pyparser
+                    # using http_parser.pyparser
 
-                    from toil_http_parser.pyparser import INVALID_CHUNK
+                    from http_parser.pyparser import INVALID_CHUNK
                     if self._parser.errno == INVALID_CHUNK:
                         # need more chunk data
                         return True

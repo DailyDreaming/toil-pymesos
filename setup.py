@@ -24,7 +24,7 @@ def find_version(*paths):
 version = find_version('pymesos', '__init__.py')
 
 setup(
-    name='toil-pymesos',
+    name='pymesos',
     version=version,
     description="A pure python implementation of Mesos scheduler and executor",
     packages=find_packages(),
@@ -35,10 +35,13 @@ setup(
         'Operating System :: POSIX',
         'Programming Language :: Python',
     ],
-    author="Zhongbo Tian is the real author; DailyDreaming is temporarily forking this as a py3.7 fix",
+    author="Zhongbo Tian",
     author_email="tianzhongbo@douban.com",
-    url="https://github.com/DailyDreaming/toil-pymesos",
-    install_requires=['six', 'toil-http-parser', 'addict', 'zkpython'],
+    url="https://github.com/douban/pymesos",
+    download_url=(
+        'https://github.com/douban/pymesos/archive/%s.tar.gz' % version
+    ),
+    install_requires=['six', 'http-parser', 'addict'],
     setup_requires=pytest_runner,
     tests_require=[
         'pytest-cov',

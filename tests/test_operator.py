@@ -1,7 +1,7 @@
 import json
 import uuid
 import random
-from toil_http_parser.http import HttpParser
+from http_parser.http import HttpParser
 from pymesos import MesosOperatorAgentDriver, MesosOperatorMasterDriver
 
 

@@ -3,7 +3,7 @@ import uuid
 import random
 import string
 from six.moves import range
-from toil_http_parser.http import HttpParser
+from http_parser.http import HttpParser
 from pymesos import MesosSchedulerDriver, encode_data
 
 
